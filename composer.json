@@ -1,0 +1,55 @@
+{
+    "name": "ge-tracker/laravel-vapor-trusted-proxies",
+    "description": "Build a dynamic list of trusted proxies for use with Laravel Vapor",
+    "keywords": [
+        "ge-tracker",
+        "laravel-vapor-trusted-proxies"
+    ],
+    "homepage": "https://github.com/ge-tracker/laravel-vapor-trusted-proxies",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "James",
+            "email": "james@ge-tracker.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4",
+        "fideloper/proxy": "^4.3",
+        "illuminate/support": "^6.0|^7.0|^8.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^4.0",
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "GeTracker\\LaravelVaporTrustedProxies\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "GeTracker\\LaravelVaporTrustedProxies\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "GeTracker\\LaravelVaporTrustedProxies\\LaravelVaporTrustedProxiesServiceProvider"
+            ],
+            "aliases": {
+                "LaravelVaporTrustedProxies": "GeTracker\\LaravelVaporTrustedProxies\\LaravelVaporTrustedProxiesFacade"
+            }
+        }
+    }
+}
