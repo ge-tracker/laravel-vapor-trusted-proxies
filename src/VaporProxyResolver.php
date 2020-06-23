@@ -20,10 +20,10 @@ class VaporProxyResolver
      *
      * @return array|null
      */
-    public function resolve(array $headers, ?array $proxies = null): ?array
+    public function resolve(array $headers, $proxies = null): ?array
     {
         $this->headers = $headers;
-        $this->proxies = $proxies;
+        $this->setProxies($proxies);
 
         if (!$this->runningInVapor()) {
             return $this->proxies;
@@ -105,5 +105,18 @@ class VaporProxyResolver
     private function runningInVapor(): bool
     {
         return isset($_SERVER['VAPOR_ARTIFACT_NAME']);
+    }
+
+    /**
+     * @param array|string|null $proxies
+     */
+    public function setProxies($proxies): void
+    {
+        if ($proxies && is_string($proxies)) {
+            $this->proxies = [$proxies];
+            return;
+        }
+
+        $this->proxies = $proxies;
     }
 }

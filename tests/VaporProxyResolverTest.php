@@ -63,6 +63,17 @@ class VaporProxyResolverTest extends TestCase
     }
 
     /** @test */
+    public function does_not_fail_on_string_proxy(): void
+    {
+        $proxies = $this->proxyResolver->resolve([
+            'x-vapor-source-ip' => ['2.2.2.2'],
+            'x-forwarded-for'   => ['1.2.3.4, 2.2.2.2, 3.3.3.3'],
+        ], '*');
+
+        $this->assertCount(4, $proxies);
+    }
+
+    /** @test */
     public function adds_the_two_proxy_headers_with_no_defaults(): void
     {
         $proxies = $this->proxyResolver->resolve([
