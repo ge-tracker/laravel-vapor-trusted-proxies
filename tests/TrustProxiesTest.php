@@ -4,6 +4,8 @@ namespace GeTracker\LaravelVaporTrustedProxies\Tests;
 
 use GeTracker\LaravelVaporTrustedProxies\LaravelVaporTrustedProxiesServiceProvider;
 use GeTracker\LaravelVaporTrustedProxies\Tests\Http\Kernel;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 use Orchestra\Testbench\TestCase;
 
 class TrustProxiesTest extends TestCase
@@ -23,6 +25,7 @@ class TrustProxiesTest extends TestCase
         parent::setUp();
 
         $_SERVER['VAPOR_ARTIFACT_NAME'] = 'laravel-vapor';
+        Config::set('trustedproxy.headers', Request::HEADER_X_FORWARDED_ALL);
     }
 
     /** @test */
@@ -37,7 +40,7 @@ class TrustProxiesTest extends TestCase
         ]);
 
         $response->assertStatus(200)
-            ->assertSee('["127.0.0.1"]');
+            ->assertJson(['127.0.0.1']);
     }
 
     /** @test */
@@ -50,6 +53,6 @@ class TrustProxiesTest extends TestCase
         ]);
 
         $response->assertStatus(200)
-            ->assertSee('["1.2.3.4"]');
+            ->assertJson(['1.2.3.4']);
     }
 }
