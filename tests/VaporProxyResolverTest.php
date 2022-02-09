@@ -95,7 +95,8 @@ class VaporProxyResolverTest extends TestCase
             'x-forwarded-for'   => '1.2.3.4, 2.2.2.2, 3.3.3.3',
         ]);
 
-        $this->assertNull($proxies);
+        $this->assertIsArray($proxies);
+        $this->assertEmpty($proxies);
     }
 
     /** @test */

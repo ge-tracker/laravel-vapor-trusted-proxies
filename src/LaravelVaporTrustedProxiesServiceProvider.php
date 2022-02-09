@@ -2,19 +2,12 @@
 
 namespace GeTracker\LaravelVaporTrustedProxies;
 
+use GeTracker\LaravelVaporTrustedProxies\Http\LaravelVaporTrustedProxies;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class LaravelVaporTrustedProxiesServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap the application services.
-     */
-    public function boot()
-    {
-
-    }
-
     /**
      * Register the application services.
      */
@@ -22,9 +15,8 @@ class LaravelVaporTrustedProxiesServiceProvider extends ServiceProvider
     {
         // Register a test route to return the requesting IP address
         if ($this->app->runningUnitTests()) {
-            Route::get('/test-ip', function () {
-                return request()->ips();
-            });
+            Route::get('/test-ip', static fn () => request()->ips())
+                ->middleware([LaravelVaporTrustedProxies::class]);
         }
     }
 }

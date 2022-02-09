@@ -3,9 +3,6 @@
 namespace GeTracker\LaravelVaporTrustedProxies\Tests;
 
 use GeTracker\LaravelVaporTrustedProxies\LaravelVaporTrustedProxiesServiceProvider;
-use GeTracker\LaravelVaporTrustedProxies\Tests\Http\Kernel;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Config;
 use Orchestra\Testbench\TestCase;
 
 class TrustProxiesTest extends TestCase
@@ -15,17 +12,11 @@ class TrustProxiesTest extends TestCase
         return [LaravelVaporTrustedProxiesServiceProvider::class];
     }
 
-    protected function resolveApplicationHttpKernel($app)
-    {
-        $app->singleton('Illuminate\Contracts\Http\Kernel', Kernel::class);
-    }
-
     protected function setUp(): void
     {
         parent::setUp();
 
         $_SERVER['VAPOR_ARTIFACT_NAME'] = 'laravel-vapor';
-        Config::set('trustedproxy.headers', Request::HEADER_X_FORWARDED_ALL);
     }
 
     /** @test */

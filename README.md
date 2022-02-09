@@ -7,6 +7,15 @@ This package was created due to `request()->ip()` always returning `127.0.0.1` o
 
 Due to the dynamic nature of Laravel Vapor, it becomes a challenge to set the [trusted proxies](https://laravel.com/docs/7.x/requests#configuring-trusted-proxies) for your Laravel application. If you rely on the IP address of the user being valid, then this package is for you!
 
+## Version Compatibility
+
+[Laravel 9.0](https://laravel.com/docs/9.x/upgrade) introduced changes to the default `TrustedProxies` middleware, and the [fideloper/proxy](https://packagist.org/packages/fideloper/proxy) package is no longer required, as the [functionality is included with Laravel](https://github.com/illuminate/http/blob/9.x/Middleware/TrustProxies.php). I'm not actively using Vapor and am not sure whether this package is still required, but I have gone ahead and updated the requirements and pushed the `v2.0` release, which drops support for earlier Laravel versions.
+
+| Laravel  | Package Version |
+| -------- | --------------- |
+| `^9.0`   | `^2.0`          |
+| `<= 9.0` | `^1.0`          |
+
 ## Installation
 
 You can install the package via composer:
@@ -27,6 +36,7 @@ use Illuminate\Http\Request;
 
 class TrustProxies extends Middleware
 {
+    ...
 ```
 
 The package will then work out-of-the-box to dynamically fetch the proxy servers used by your current Vapor's deployment.

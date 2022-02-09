@@ -2,20 +2,15 @@
 
 namespace GeTracker\LaravelVaporTrustedProxies\Http;
 
-use Fideloper\Proxy\TrustProxies as Middleware;
 use GeTracker\LaravelVaporTrustedProxies\VaporProxyResolver;
-use Illuminate\Contracts\Config\Repository;
+use Illuminate\Http\Middleware\TrustProxies as Middleware;
 use Illuminate\Http\Request;
 
 class LaravelVaporTrustedProxies extends Middleware
 {
-    private VaporProxyResolver $proxyResolver;
-
-    public function __construct(Repository $config, VaporProxyResolver $proxyResolver)
-    {
-        parent::__construct($config);
-
-        $this->proxyResolver = $proxyResolver;
+    public function __construct(
+        private VaporProxyResolver $proxyResolver
+    ) {
     }
 
     /**
@@ -24,14 +19,13 @@ class LaravelVaporTrustedProxies extends Middleware
      * @param Request $request
      *
      * @noinspection PhpVoidFunctionResultUsedInspection
+     * @noinspection ReturnTypeCanBeDeclaredInspection
      */
     protected function setTrustedProxyIpAddresses(Request $request)
     {
-        $trustedIps = $this->proxies ?: $this->config->get('trustedproxy.proxies');
-
         $this->proxies = $this->proxyResolver->resolve(
             $request->headers->all(),
-            $trustedIps
+            $this->proxies
         );
 
         return parent::setTrustedProxyIpAddresses($request);

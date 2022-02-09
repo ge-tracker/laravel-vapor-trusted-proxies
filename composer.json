@@ -3,7 +3,10 @@
     "description": "Build a dynamic list of trusted proxies for use with Laravel Vapor",
     "keywords": [
         "ge-tracker",
-        "laravel-vapor-trusted-proxies"
+        "laravel-vapor-trusted-proxies",
+        "laravel vapor",
+        "laravel vapor trusted proxies",
+        "trusted proxy"
     ],
     "homepage": "https://github.com/ge-tracker/laravel-vapor-trusted-proxies",
     "license": "MIT",
@@ -16,13 +19,15 @@
         }
     ],
     "require": {
-        "php": "^7.4|^8.0",
-        "fideloper/proxy": "^4.2",
-        "illuminate/support": "^6.0|^7.0|^8.0"
+        "php": "^8.0",
+        "illuminate/http": "^9.0",
+        "illuminate/support": "^9.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^4.0|^5.0|^6.0",
-        "phpunit/phpunit": "^8.0|^9.3"
+        "friendsofphp/php-cs-fixer": "^3.6",
+        "gtjamesa/php-standards": "^2.0",
+        "orchestra/testbench": "^7.0",
+        "phpunit/phpunit": "^9.5"
     },
     "autoload": {
         "psr-4": {
@@ -36,22 +41,12 @@
     },
     "scripts": {
         "test": "vendor/bin/phpunit",
-        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
-
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
+        "fix": "vendor/bin/php-cs-fixer fix"
     },
     "config": {
         "sort-packages": true
     },
     "prefer-stable": true,
-    "minimum-stability": "dev",
-    "extra": {
-        "laravel": {
-            "providers": [
-                "GeTracker\\LaravelVaporTrustedProxies\\LaravelVaporTrustedProxiesServiceProvider"
-            ],
-            "aliases": {
-                "LaravelVaporTrustedProxies": "GeTracker\\LaravelVaporTrustedProxies\\LaravelVaporTrustedProxiesFacade"
-            }
-        }
-    }
+    "minimum-stability": "dev"
 }

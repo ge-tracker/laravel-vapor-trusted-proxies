@@ -10,17 +10,17 @@ class VaporProxyResolver
     private const FORWARDED_FOR = 'x-forwarded-for';
 
     private array $headers;
-    private ?array $proxies;
+    private ?array $proxies = [];
 
     /**
      * Resolve a new set of trusted proxies
      *
-     * @param array      $headers Array of HTTP server headers
-     * @param array|null $proxies Array of proxies defined in TrustProxies middleware
+     * @param array             $headers Array of HTTP server headers
+     * @param array|string|null $proxies Array of proxies defined in TrustProxies middleware
      *
      * @return array|null
      */
-    public function resolve(array $headers, $proxies = null): ?array
+    public function resolve(array $headers, array|string|null $proxies = null): ?array
     {
         $this->headers = $headers;
         $this->setProxies($proxies);
@@ -110,13 +110,8 @@ class VaporProxyResolver
     /**
      * @param array|string|null $proxies
      */
-    public function setProxies($proxies): void
+    public function setProxies(array|string|null $proxies): void
     {
-        if ($proxies && is_string($proxies)) {
-            $this->proxies = [$proxies];
-            return;
-        }
-
-        $this->proxies = $proxies;
+        $this->proxies = Arr::wrap($proxies);
     }
 }
