@@ -11,10 +11,10 @@ Due to the dynamic nature of Laravel Vapor, it becomes a challenge to set the [t
 
 [Laravel 9.0](https://laravel.com/docs/9.x/upgrade) introduced changes to the default `TrustedProxies` middleware, and the [fideloper/proxy](https://packagist.org/packages/fideloper/proxy) package is no longer required, as the [functionality is included with Laravel](https://github.com/illuminate/http/blob/9.x/Middleware/TrustProxies.php). I'm not actively using Vapor and am not sure whether this package is still required, but I have gone ahead and updated the requirements and pushed the `v2.0` release, which drops support for earlier Laravel versions.
 
-| Laravel  | Package Version |
-| -------- | --------------- |
-| `^9.0`   | `^2.0`          |
-| `<= 9.0` | `^1.0`          |
+| Laravel       | Package Version |
+| ------------- | --------------- |
+| `^9.0` and up | `^2.0`          |
+| `<= 9.0`      | `^1.0`          |
 
 ## Installation
 
