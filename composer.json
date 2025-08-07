@@ -20,14 +20,14 @@
     ],
     "require": {
         "php": "^8.0",
-        "illuminate/http": "^9.0 || ^10.0 || ^11.0",
-        "illuminate/support": "^9.0 || ^10.0 || ^11.0"
+        "illuminate/http": "^9.0 || ^10.0 || ^11.0 || ^12.0",
+        "illuminate/support": "^9.0 || ^10.0 || ^11.0 || ^12.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.6",
         "gtjamesa/php-standards": "^2.0",
-        "orchestra/testbench": "^7.0 || ^8.0 || ^9.0",
-        "phpunit/phpunit": "^9.5 || ^10.0"
+        "orchestra/testbench": "^7.0 || ^8.0 || ^9.0 || ^10.0",
+        "phpunit/phpunit": "^9.5 || ^10.0 || ^11.0"
     },
     "autoload": {
         "psr-4": {
